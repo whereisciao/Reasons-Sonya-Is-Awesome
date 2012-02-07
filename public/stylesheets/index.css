@@ -1,0 +1,133 @@
+body {
+  background: url('/img/white_plaster.png') top center repeat;
+  font-family: Helvetica, Verdana, sans-serif;
+}
+
+#page {
+  z-index 1;
+  width: 100%;
+  min-height: 300px;
+  background: rgb(230,230,230);
+  box-shadow: 0 0 4px rgb(120,120,120);
+  background-color: #eeeeee;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: linear-gradient(top, #eeeeee, #cccccc);
+  border: 1px solid #ccc;
+  border-bottom: 1px solid #bbb;
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+  #page ul {
+    list-style-type: none;
+    padding: 25px 10px;
+    margin-bottom: 50px;
+    margin-left: 4em;
+  }
+    #page ul li {
+      line-height: 1.5em;
+      margin-top: 5px;
+      font-size: 2.0em;
+      font-weight: bold;
+      color: rgb(60,60,60);
+      text-shadow: 0 0 1px rgb(120,120,120);
+    }
+
+#footer p {
+    color: black;
+}
+
+#footer a, #footer a:visited, #footer a:hover {
+    color: #5c57a6;
+}
+
+#call-options li {
+    display: inline;
+}
+
+#call-options, #call-status {
+    display: none;
+}
+
+#call-button, #option1, #option2, #option3, #option4 {
+    font-size: 24px;
+    padding: 8px 24px;
+}
+
+#header {
+    background: url('/img/header.png');
+    width: 780px;
+    height: 261px;
+    z-index: 3;
+    margin-bottom: -18px;
+}
+
+#social {
+    z-index: 5;
+}
+
+@media only screen and (max-width: 959px) {
+    #header {
+        background: url('/img/header-620x207.png');
+        width: 620px;
+        height: 207px;
+    }
+
+    #page {
+        z-index: 1;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    #header {
+        background: url('/img/header-540x181.png');
+        width: 540px;
+        height: 181px;
+        margin-bottom: -11px;
+        margin-left: -60px;
+        z-index: 3;
+    }
+
+    #page {
+        z-index: 1;
+    }
+    
+    #page ul {
+        margin-left: 2em;
+    }
+
+    #page ul li {
+      line-height: 1.2em;
+      font-size: 1.7em;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    #header {
+        background: url('/img/header-380x127.png');
+        width: 380px;
+        height: 127px;
+        margin-bottom: -10px;
+        margin-left: -40px;
+        z-index: 3;
+    }
+
+    #page {
+        z-index: 1;
+    }
+
+    #page ul {
+        margin-left: 1em;
+    }
+
+    #page ul li {
+      line-height: 1.0em;
+      font-size: 1.5em;
+    }
+}
+
