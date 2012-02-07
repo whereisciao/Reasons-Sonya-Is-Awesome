@@ -1,4 +1,4 @@
-Forked from `https://github.com/RobSpectre/Reasons-Sonya-Is-Awesome`.
+Forked from [https://github.com/RobSpectre/Reasons-Sonya-Is-Awesome](https://github.com/RobSpectre/Reasons-Sonya-Is-Awesome).
 
 # Reasons Sonya Is Awesome
 
