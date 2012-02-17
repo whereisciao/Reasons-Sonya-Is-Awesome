@@ -1,4 +1,4 @@
-Forked from `https://github.com/RobSpectre/Reasons-Sonya-Is-Awesome`.
+Forked from [https://github.com/RobSpectre/Reasons-Sonya-Is-Awesome](https://github.com/RobSpectre/Reasons-Sonya-Is-Awesome).
 
 # Reasons Sonya Is Awesome
 
@@ -17,7 +17,7 @@ Text or call (718)285-0684 to use the mobile experience.
 
 ## Technology
 
-I'm using a bunch of fun stuff here:
+Here are the technology used by the Ruby Version:
 
 * [Sinatra](http://flask.pocoo.org/)
 * [Heroku](http://www.heroku.com)
