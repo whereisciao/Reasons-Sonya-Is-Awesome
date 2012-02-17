@@ -1,10 +1,30 @@
 require 'rubygems'
 require 'bundler'
+require 'yaml'
 
 Bundler.require
 
 configure do
   VOICE = "woman"
+  REASONS = YAML::load(File.open(File.dirname(__FILE__) + "/reasons.yml"))
+  MAX_SMS_LIMIT = 160
+  SMS_LIMIT = 120
+end
+
+def segment_sms(message, sms_limit = 120)
+  space = 1
+  
+  message.split(" ").inject({:len => 0, :part => [[]]}) do |collection, token|
+    next_token = token.size + space
+    if(collection[:len] + next_token < sms_limit)
+      collection[:len] += next_token
+      collection[:part].last << token
+    else
+      collection[:len] = next_token
+      collection[:part] << [token]
+    end
+    collection
+  end
 end
 
 get '/' do
@@ -20,7 +40,18 @@ post '/sms' do
       r.Sms "Welcome to the Reasons Sonya Is Awesome Hotline.  Text GIMME " +
         "to get one random reason Sonya is awesome."
     else
-      r.Sms reasonSonyaIsAwesome
+      reason = reasonSonyaIsAwesome
+
+      if(reason.size <= MAX_SMS_LIMIT)
+        r.Sms reason
+      else
+        segments = segment_sms(reason, SMS_LIMIT)
+        total_parts = segments[:part].size
+        segments[:part].each_with_index do |segment, idx|
+          r.Sms segment.join(" ") + " (#{idx + 1}/#{total_parts})"
+        end
+      end
+
     end
   end
   
@@ -74,38 +105,5 @@ post '/gather' do
 end
 
 def reasonSonyaIsAwesome
-  reasons = [
-    'Alex: You hate the Giants.',
-    'Alex: You can make a mean clafuti.',
-    'Alex: You are an Excel master.',
-    'Alex: You hate Apple.',
-    'Alex: You are a beer snob.',
-    'Alex: You are a great mother.',
-    'Alex: You are a very smart woman.',
-    'Alex: You are the neck of our family.',
-    'Alex: You have a great waist.',
-    'Kent: You are have very intelligent discussions.',
-    'Kent: You have a great sense of humor.',
-    'Ellen: Your brain is is awesome.',
-    'Becca: You are a good listener and has a fantastic perspective.',
-    'Becca: You accomplished everything you hoped to before 30.',
-    'Becca: You were in every Las Vegas casino before she was 18.',
-    'Becca: You can be counted on to be an emergency contact for '\
-        'friends who don\'t have family in NYC.',
-    'Becca: You were at bars in Williamsburg even when you were ' \
-        'super pregnant.',
-    'Becca: You like both opera and ska music.',
-    'Rob: You are one of the most fiercely loyal people in New York.',
-    'Rob: The scope of your intellect is matched only by the size ' \
-            'of your heart',
-    'Rob: You remember where you came from and are grateful for ' \
-            'the journey.',
-    'Rob: You and Alex form my ideal of matrimony.',
-    'Rob: Your family comes first.',
-    'Rob: You do not front.',
-    'Bill: You speak Russian.  LOUD.',
-    'Alex: You vote in every election.',
-    'Bill: You are my best friend\'s hit wife.'
-  ]
-  return reasons[rand(reasons.size)]
+  return REASONS[rand(REASONS.size)]
 end
